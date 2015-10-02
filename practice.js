@@ -11,10 +11,15 @@ var outer = function(){
 
   //Code Here
 
+var innerFn = outer();
+var inner = innerFn(outer());
+
+
 //Once you do that, invoke inner.
 
   //Code Here
 
+alert(inner);
 
 
 //Next problem
@@ -34,6 +39,10 @@ var callFriend = function(){
 
   //Code Here
 
+var calling = callFriend();
+calling("435-215-9248");
+
+// REMEMBER YOU HAD A HARD TIME FIGURING THIS SUPER SIMPLE ONE OUT
 
 
 //Next Problem
@@ -45,12 +54,22 @@ var callFriend = function(){
 */
 
   //Code Here
-  var count = makeCounter();
-  count() // 1
-  count() // 2
-  count() // 3
-  count() // 4
+ var  makeCounter = function(){
+    var count = 1;
+    function counter(){
+        return count++;
+    } 
+        
+    return counter;
+  };
 
+
+ var countFn = makeCounter();
+  countFn() // 1
+  countFn() // 2
+  countFn() // 3
+  countFn() // 4
+  countFn() // 5
 
 
 //Next Problem
@@ -63,7 +82,4 @@ var callFriend = function(){
   Once completed, add a second argument that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
-
-
-
 
