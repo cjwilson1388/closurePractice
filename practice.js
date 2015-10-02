@@ -83,3 +83,120 @@ calling("435-215-9248");
   After the function has been called N number of times, console.log('STAHHP');
 */
 
+//        ****************** Counting Function ********************* //
+var counter = 0;
+var countingFn = function(){
+  if (counter < 5) {
+    var message = "cool";
+    console.log(message);
+  }
+  else {
+    var message2 = "STAHHP";
+    console.log(message2);
+  }
+  counter++;
+  return counter;
+};
+countingFn();
+countingFn();
+countingFn();
+countingFn();
+countingFn();
+countingFn();
+countingFn();
+countingFn();
+
+//******* END OF COUNTING FUNCTION ************************** //
+
+
+//****** FUnction to a function calll a function only once part 1 has the structure of function within a function part 2 has a function that allows me to call once to let a function know it can only be used once. ******** //
+
+// Part 1
+
+function threeFunc(passedIn) {
+  return passedIn;
+}
+
+function oneFunc(twoFunc) {
+  twoFunc();
+}
+
+oneFunc(function(){ threeFunc(oneFunc)})
+
+oneFunc(function(){ threeFunc("called second function with annon function calling on firstFunc"); 
+});
+
+oneFunc(function(){ threeFunc(alert("called second function with annon function calling on firstFunc")); 
+});
+
+// Part 2
+function once(fn, action) {
+  var result;
+
+  return function() {
+    if(fn) {
+      result = fn.apply(action || this, arguments);
+      fn = null;
+    }
+    return result;
+  };
+}
+
+// End of Part 2
+
+
+
+
+
+
+/* Possible Use **********
+
+funct(a, function(){foo(x)});
+
+var myFunc = function(){
+     myFunc = function(){}; // kill it as soon as it was called
+     console.log('call once and never again!'); // your stuff here
+
+};
+
+
+
+
+
+
+
+var firstFn = (function(secondFn(){
+  return firstFn;
+}) {
+  firstFn = function(){};
+  console.log("called once");
+})();
+
+function firstFn(secondFn(){
+  return firstFn;
+}) {
+  firstFn = function(){};
+  console.log('Called Once');
+}
+
+var someFunction = function(){ console.log('wagwan!'); };
+
+var FirstFn = function(){secondFn(){
+  return firstFn;
+}}
+
+function foo(x) {
+   alert(x);
+}
+function bar(func) {
+   func();
+}
+
+
+
+//alerts "Hello World!" (from within bar AFTER being passed)
+bar(function(){ foo("Hello World!") });
+
+
+*/
+
